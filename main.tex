@@ -1,0 +1,149 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lachaise Assignment
+% LaTeX Template
+% Version 1.0 (26/6/2018)
+%
+% This template originates from:
+% http://www.LaTeXTemplates.com
+%
+% Authors:
+% Marion Lachaise & François Févotte
+% Vel (vel@LaTeXTemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\input{structure.tex} % Include the file specifying the document structure and custom commands
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Math 407: Interesting Discovery} % Title of the assignment
+
+\author{Xuweiyi Chen\\ \texttt{xuweic@uw.edu}} % Author name and email address
+
+\date{University of Washington --- \today} % University, school and/or department name(s) and a date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	INTRODUCTION
+%----------------------------------------------------------------------------------------
+
+\section*{Introduction} % Unnumbered section
+
+I want to present an interesting finding by comparing a set of two different solutions
+to one homework question. This interesting finding might help people better understand 
+the meaning of shadow prices and my concerns about the meaning behind shadow prices.
+
+% \begin{info} % Information block
+% 	This is an interesting piece of information, to which the reader should pay special attention. Fusce varius orci ac magna dapibus porttitor. In tempor leo a neque bibendum sollicitudin. Nulla pretium fermentum nisi, eget sodales magna facilisis eu. Praesent aliquet nulla ut bibendum lacinia. Donec vel mauris vulputate, commodo ligula ut, egestas orci. Suspendisse commodo odio sed hendrerit lobortis. Donec finibus eros erat, vel ornare enim mattis et.
+% \end{info}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section{Problem Background Revisit} % Numbered section
+
+I am refering to problem 1.6 from Chvatal. I will brief all background information 
+here. A meat packing plant produces $480$ hams, $400$ prok bellies, and $230$ picnic 
+hams every day; each of these products can be sold either fresh or smoked. The total 
+number of hams, bellies, and picnics that can be smoked during a normal day is $420$; 
+in addition, up to $250$ produces can be smoked on overtimes at a higher cost. \\
+The prices for fresh ham, smoked on regular time ham and smoked on overtime ham are 
+$\$8$, $\$14$ and $\$11$. \\
+The prices for fresh bellies, smoked on regular time bellies and smoked on overtime bellies are 
+$\$4$, $\$12$ and $\$7$. \\
+The prices for fresh picnics, smoked on regular time picnics and smoked on overtime picnics are 
+$\$4$, $\$13$ and $\$9$.
+
+%------------------------------------------------
+
+\subsection{First Approach}
+
+Define $x_1$ is the number of hams being smoked, $x_2$ is the number of hams smoked overnight,
+$x_3$ is the number of bellies smoked, $x_4$ is the number of bellies smoked overnight,
+$x_5$ is the number of picnic smoked, $x_6$ is the number of picnics smoked overnight. \\
+Then we have the following LP: \\
+Max: $6x_1 + 3x_2 + 8x_3 + 3x_4+ 9x_5 +5x_6$: \\
+such that:
+\begin{align*}
+	x_1 + x_2 \leq 480 \\
+	x_3 + x_4 \leq 400 \\
+	x_5 + x_6 \leq 230 \\
+	x_1 + x_3 + x_5 \leq 420 \\
+	x_2 + x_4 + x_6 \leq 250 \\
+	x_1, x_2, x_3, x_5. x_6 \geq 0
+\end{align*}
+As a result, we have the following values: $x_1 = 0$, $x_2 = 40$, $x_3 = 400$, $x_4 = 0$,
+$x_5 = 20$, and $x_6 = 210$. The corresponding shadow prices are $y_1 = 0$, $y_2 =1$, 
+$y_3=2$, $y_4 = 7$ and $y_5 = 3$.
+%------------------------------------------------
+
+\subsection{Second Approach}
+
+Define $x_1$  is the number of fresh hams, $x_2$ is the number of hams being smoked, $x_3$ is the number of hams smoked overnight,
+$x_4$ is the number of fresh bellies, $x_5$ is the number of bellies smoked, $x_6$ is the number of bellies smoked overnight,
+$x_7$ is the number of fresh picnics, $x_8$ is the number of picnic smoked, $x_9$ is the number of picnics smoked overnight. \\
+Then we have the following LP: \\
+Max: $8x_1 + 14x_2 + 11x_3 + 4x_4+ 12x_5 +7x_6 +4x_7+13x_8+9x_9$: \\
+such that:
+\begin{align*}
+	x_1 + x_2 + x_3 \leq 480 \\
+	x_4 + x_5 + x_6 \leq 400 \\
+	x_7 + x_8 + x_9 \leq 230 \\
+	x_2 + x_5 + x_8 \leq 420 \\
+	x_3 + x_6 + x_9 \leq 250 \\
+	x_1, x_2, x_3, x_5. x_6, x_7, x_8, x_9 \geq 0
+\end{align*}
+As a result, we have the following values: $x_1 = 440$, $x_2 = 0$, $x_3 = 40$, $x_4 = 0$,
+$x_5 = 400$, $x_6 = 0$, $x_7 = 0$, $x_8 = 20$ and $x_9 = 210$. The corresponding shadow prices are $y_1^* = 8$, $y_2^* =5$, 
+$y_3^*=6$, $y_4^* = 7$ and $y_5^* = 3$.
+%----------------------------------------------------------------------------------------
+%	PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+\section{Discussion}
+
+With little superise, both methods present the same solution to the exact same solution concerning
+on how to maximize the profit. However, I want to point out that the difference between 
+$y$ and $y^*$ is $8, 4, 4, 0, 0$ where differences on first three elements present exactly the price for 
+the fresh hams, fresh bellies and fresh picnics.
+
+This result is not suprising at all. We had extra variables taking all the costs into 
+considerations. However, my concerns about the definitions about shadow prices have been 
+arised.
+
+I quote from the book in Chvatal, $y_i$ is often called the marginal value of the ith resource,
+the adjective marginal referring to the difference between the trading price and the actual 
+worth of the resource.
+
+Based on the two alternative solutions for the problem, I find that there are some contradictions 
+in a clear manner. Specifically, if we put no limitations on how to construct an LP at the beginning,
+we cannot be sure about the meanings of dual solutions. Based on the example I presented,
+the dual solutions can either become the shadow prices or the shadow prices plus the cost of 
+the resources. This is also a very practical and critical point that we should consider because 
+the result will influence pricing and many decisions if we are trying to interpret the 
+solutions from simplex methods.
+
+It might be fun to prove my thoughts rigoriously because the vagueness of the definition of 
+shadow prices made me confused for a couple of days. However, this example serves as an interesting 
+piece of the meaning of shadow prices, but also makes me wonder whether Chvatal works on 
+examples like I presented above.
+%----------------------------------------------------------------------------------------
+
+\end{document}
